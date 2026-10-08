@@ -1,0 +1,17 @@
+version: '3.8'
+
+networks:
+  hiregen_network:
+    driver: bridge
+
+services:
+  nginx:
+    build:
+      context: ./infrastructure/nginx
+      dockerfile: Dockerfile
+    container_name: hiregen_nginx_proxy
+    ports:
+      - "80:80"
+    networks:
+      - hiregen_network
+    restart: unless-stopped
